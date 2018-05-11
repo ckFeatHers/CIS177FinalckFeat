@@ -1,47 +1,53 @@
 /**
  * Can I?
  *
- * 1. user inputs of 
- * -currentPts in class
- * -currentWk on the sylibi
- * - gradeGoal
- * -class/instructor
+ * 1. user inputs 
+ * -course #course -pulldown list
+ * -current week #week-num - entry (prefer pulldown list)
+ * -user's current pts #user-pts - entry (validate not over max for class)
+ * -grade goal #goal - pull down
  *
  * 2. program const use MAP or double array
  *  -INSTRUCTOR 
  *  -CLASS # 
- *  -MAX_PTS 
- *  -SCALE for A
+ *  -MAX_PTS (can calculate from WEEKLY array)
+ *  -SCALE_A (based on A%) 
+ *  -SCALE (can calculate from A_SCALE)
  *  -WEEKLY[] points for class by week
  *      a. will start with Constants to verify function accuracy before using a Map
  *
- * 3  Create Object with values above : recommended by MDN to use obj for unknowns until programming time
- *      a  may be easier with methods
- *      b  class course can have consts w/method 
- *          -scale value 100 - scale for A; 
- *          -current wk max pts for loop through weekly array      
+ * 3. Values Calculations
+ *      a. Scale = 100 - SCALE_A (skip and go to D)
+ *      b  MAX_PTS = WEEKLY[].Sum 
+ *      c. Current Max Points = curr-max =+ Weekly[i] where => i < num-week;
+ *      d. goal-per = 100 - (Scale*(1 for A, 2 for B, 3 for C and 4 for Pass))
+ *          -could use recursion here- stage 3
+ *      d. goal-pts = MAX_PTS.ceil * goal-per
  *
  * 4 Create Methods to process output:
  * PART I 
- *    -retrieve value of letter grade
- *    -Determine Class pts needed for Goal
- *    -OUTPUT gradeGoal 
+ *    1-retrieve value of selected Course #course = pull from map
+ *    2-Determine Class pts needed for #goal GoalPts = max.ceil * goal-per
+ *    -OUTPUT : print key/value pairs; class, inst, max, scale, GoalPts
  * 
  * PART II
- *    -retrieve current week values 1-17 - 
- *    -calculate current week total class pts - use for loop to current week
- *    -retrieve (and test) user current week's points - test neg, non num, over max pts for class
- *    -calcualte current percent average with user pts and class current pts
- *    -OUTPUT traking - current % state points left in class
+ *    1-retrieve current week values 1-17 - #week-num
+ *    2-calculate current week's total pts - use loop to current week-num
+ *    3-retrieve (and test) user current week's points #user-pts - test neg, non num, over max pts for class
+ *    4-calcualte current percent average with user pts and class current pts
+ *    -OUTPUT : #trackin-btn : trackingBtn
+ *              Pts away from GoalPts and give current % 
  * 
  * PART III
- *    -Compare Diff of Max pts to Current Class Pts to Diff
- *    -get percent needed for remaining points in Class to reach goal(similar to point margin)
+ *    1-calculate Margin 
+ *          -need Diff Max pts to Current Class Pts  (AKA Remaining Pts in class)
+ *          -need Diff GoalPts to Current User Pts #user-pts (AKA Remaining Pts needed for Goal)
+ *    2-get percent needed for remaining assignments in Class to reach goal(similar to point margin)
  *    -OUTPUT pointMargin  - pt margin and avg % of future assignments
  *
  * 5 BIG QUESTIONS OUTPUTS
  *          a. Class target for goal
- *          b. Current status 
+ *          b. Current status of pts away from goal
  *          c. Margin for achieving goal
  *
 */

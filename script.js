@@ -33,7 +33,7 @@ function getGoal(l, c) {
   /************************   PART II  ******************************/
   /**
    *Get percent of current Week's in class avg
-   * @param {number} user points 
+   * @param {number} user current points 
    * @param {number} currentPts class current max pts
    * @return {Number} percent avg 
    */
