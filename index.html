@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<!-- see js NOTE: lines 1-5-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Final Assessment</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="container">
+    <div class="row">
+      <h1>Can I Get My Goal?</h1>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <form>
+        <div class="row">
+          <div class="form-group col-4">
+            <label for="course">Select Course</label>
+            <select class="form-control" id="course">
+              <option>C#</option>
+              <option>Python</option>
+            </select>
+          </div><!-- .form-group -->
+
+          <div class="form-group col-6">
+            <label for="week-num">Enter the current semester week:</label>
+            <input type="text" class="form-control" id="week-num">
+          </div><!-- .form-group -->
+        </div><!-- .row -->
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="curr-pts">Enter current points earned in class:</label>
+            <input type="text" class="form-control" id="curr-pts">
+          </div><!-- .form-group -->
+
+          <div class="form-group col-6">
+              <label for="goal">What is your Letter Grade Goal?</label>
+              <select class="form-control" id="goal">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+              </select>
+            </div><!-- .form-group -->
+        </div><!-- .row -->
+      </form>
+    </div><!-- .row -->
+  </div><!-- .container -->
+
+  <div>
+    <button id="endGoal-btn" type="button" value="Set Goal">Set Goal</button>
+    <button id="tracking-btn" type="button" value="Track Goal">Track Goal</button>
+    <button id="goalMargin-btn" type="button" value="Goal Margin">Goal Margin</button>
+  </div>
+
+
+
+  <!-- <form action="#" method="get"> -->
+    <!-- <legend>Needed Information</legend> -->
+      <!-- <label for="course">
+      Select Class
+    </label>
+    <select name="course" id="course">
+      <option value="value1">C#</option>
+      <option value="value2">Python</option>
+    </select>
+      <label for="number">
+      Enter the semester week number class is in?</label>
+      <input id="user-weekNum" type="number" name="number">
+      </div>
+      <div>
+      <label>Enter your Current Points in the class?</label>
+      <input id="user-ptsNow" type="number" name="number">
+      <label>What is your Goal in the class?</label><br>
+      <input id="user-letterA" type="radio" name="letter" value="No">A
+      <input id="user-letterB" type="radio" name="letter" value="No">B
+      <input id="user-letterC" type="radio" name="letter" value="No">C
+      <input id="user-letterP" type="radio" name="letter" value="Yes">Pass
+      </div>
+    <br>
+    <button id="endGoal-btn" type="button" value="point for goal">Set Goal</button>
+    <button id="tracking-btn" type="button" value="tracking">Track Goal</button>
+    <button id="goalMargin-btn" type="button" value="Evaluate">Goal Margin</button>
+  </form> -->
+  <p id="out-endGoal">
+    <!-- this is result of goal, scale, maxpts reports class goal pts. -->
+</p>
+<p id="out-tracking">
+  <!-- this is result of user pts, wk# reports current status. -->
+</p>
+<p id="out-goalMargin">
+    <!-- this is result of goal, scale, maxpts, wk#,  reports class goal pts. -->
+</p>
+  <script src="course.js"></script>
+  <script src="scripts.js"></script>
+</body>
+    <!-- this is result of goal, scale, maxpts, wk#,  reports class goal pts. -->
+</html>

@@ -1,0 +1,53 @@
+body {
+  background: silver;
+  color: darkslategrey;
+  font-size: 16px;
+  min-width: 250px;
+}
+
+h1 {
+  color: blue;
+}
+
+button {
+  background: blue;
+  color: whitesmoke;
+}
+
+#out-gradeGoal {
+  color: blueviolet;
+  border: 1px;
+  border-color: chocolate;
+  margin: 2px;
+  background: whitesmoke;
+}
+
+#out-tracking {
+  color: teal;
+  border: 1px;
+  border-color: hotpink;
+  margin: 2px;
+  background: whitesmoke;
+}
+
+#out-goalMargin {
+  color: blue;
+  border: 1px;
+  border-color: chartreuse;
+  margin: 4px;
+  background: whitesmoke;
+}
+
+p {
+  margin: 10px 10px 10px 10px;
+  min-width: 90%;
+  max-width: 550px;
+}
+
+div {
+  margin: 10px;
+  padding: 10px;
+}
+
+/*On collapse of screen size adjust buttons to verticle
+or limit min size so thrid button does not shift/*
