@@ -16,7 +16,7 @@
  * #goal-btn            #track-btn                  #margin-btn
  * #out-Goal            #out-Track                  #out-Margin
  * 
- * Course Info          Pts Away(C)                 Margin (B - A)
+ * Course Info          Pts Away(C)                 Margin (RemainClass(B) - RemainNeed(A))
  * GoalPts              %Current(D)                 %Remaining(A/B)
  * 
  * 
