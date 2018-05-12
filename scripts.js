@@ -1,17 +1,19 @@
-// form elements use to
-//  Objects instatized
-let Person = {
-  goal: document.querySelector("#goal").value,
-  currentPts: document.querySelector("#user-pts").value,
-  class: document.querySelector("#course").value,
-  week: document.querySelector("#week-num").value
-};
+/**
+ *  use form elements
+ *  to set a Person constructor
+ */
+function Person() {
+  goal = document.querySelector("#goal").value;
+  currentPts = document.querySelector("#user-pts").value;
+  classId = document.querySelector("#course").value;
+  week = document.querySelector("#week-num").value;
+}
 
+// initializes a Person from CONSTRUCTOR to use in prog
 const myUser = new Person();
 
-let Course = courseMap.get(myUser.classId());
-
-const myClass = new Course(myUser.classId());
+// pulling object from map to define myClass OBJECT
+let myClass = courseMap.get(myUser.classId);
 
 // buttons
 const classGoalBtn = document.querySelector("#goal-btn");
