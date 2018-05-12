@@ -1,4 +1,4 @@
-const classObj(key) = {
+const Course(key) = {
   classId: 101,
   className: "CIS-101: Class with Instructor",
   scale: 1,
