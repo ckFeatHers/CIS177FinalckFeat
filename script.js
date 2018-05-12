@@ -1,30 +1,37 @@
+
+const course = new Map(document.querySelector("#course").value);
+
 /**
  * Convert a letter grade from user input.
  * @param {String} l letter grade
  * @param {Object} c - course object from courses map. 
  * @return {Number} pts return the converted pts from letter grade
  */
-function getGoal(l, c) {
-    let pts;
-    switch ("l") {
+function getGoal(c) {
+    const goal = document.querySelector("#goal").value();
+    let less;
+    switch (goal) {
       case "A":
-        pts = Math.ceil(c.max * (100 - c.scale) / 100);
+        less = 1;
         break;
       case "B":
-        pts = Math.ceil(c.max * (100 - c.scale * 2) / 100);
+        less = 2;
         break;
       case "C":
-        pts = Math.ceil(c.max * (100 - c.scale * 3) / 100);
+        less = 3;
         break;
       case "P":
-        pts = Math.ceil(c.max * (100 - c.scale * 4) / 100);
+        less = 4;
         break;
       default:
-        pts = -1;
+        less = 0;
         break;
     }
+        const pts = Math.ceil(c.max * (100 - (less*c.scale) / 100);
     return pts;
   }
+
+  console.log(getGoal(course));
   
   /* 
   Developer's Note: Consider separating out part 2 and 3 into their own JS files. Just be wary of the order in which the code is loaded in from index.html or you may get 'undefined' issues.

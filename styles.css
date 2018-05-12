@@ -14,7 +14,7 @@ button {
   color: whitesmoke;
 }
 
-#out-gradeGoal {
+#out-Goal {
   color: blueviolet;
   border: 1px;
   border-color: chocolate;
@@ -22,7 +22,7 @@ button {
   background: whitesmoke;
 }
 
-#out-tracking {
+#out-Track {
   color: teal;
   border: 1px;
   border-color: hotpink;
@@ -30,7 +30,7 @@ button {
   background: whitesmoke;
 }
 
-#out-goalMargin {
+#out-Margin {
   color: blue;
   border: 1px;
   border-color: chartreuse;

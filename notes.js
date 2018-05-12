@@ -6,7 +6,7 @@
  * #goal                #week-num
  * 
  * COURSE               TRACK                       MARGIN
- * -maxPts             -wkMax = WEEKLY(p1)[#wk]    A-GoalPts(p1) - #user-pts
+ * -maxPts              -wkMax = WEEKLY(p1)[#wk]    A-GoalPts(p1) - #user-pts
  * -GoalPts             C-GoalPts(p1)-#user-pts     B-maxPts(p1) - wkMax(p2)
  * -WEEKLY[](#course)   D-% #user-pts/wkMax
  *  * 
@@ -14,7 +14,8 @@
  * "Set Goal"           "Track Goal"                "Goal Margin"
  * classGoalBtn         trackBtn                    marginBtn
  * #goal-btn            #track-btn                  #margin-btn
- * #out-Goal            #out-track                  #out-Margin
+ * #out-Goal            #out-Track                  #out-Margin
+ * 
  * Course Info          Pts Away(C)                 Margin (B - A)
  * GoalPts              %Current(D)                 %Remaining(A/B)
  * 
