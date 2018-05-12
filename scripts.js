@@ -1,10 +1,11 @@
+/** ******************CREATE OBJ for use in Program****************** */
 /**
  *  use form elements
- *  to set a Person constructor
+ *  to set a PERSON constructor
  */
 function Person() {
   goal = document.querySelector("#goal").value;
-  currentPts = document.querySelector("#user-pts").value;
+  userPts = document.querySelector("#user-pts").value;
   classId = document.querySelector("#course").value;
   week = document.querySelector("#week-num").value;
 }
@@ -12,8 +13,14 @@ function Person() {
 // initializes a Person from CONSTRUCTOR to use in prog
 const myUser = new Person();
 
-// pulling object from map to define myClass OBJECT
-let myClass = courseMap.get(myUser.classId);
+/** Assign courseMap Obj definitiona with key: classId 
+ * @param {string} myUser.classId
+ * pulling object from map to define OBJECT COURSE
+ * Declared then create myClass to use in program.
+ */
+let Course = courseMap.get(myUser.classId);
+
+const myClass = new Course();
 
 // buttons
 const classGoalBtn = document.querySelector("#goal-btn");
@@ -25,13 +32,13 @@ const marginBtn = document.querySelector("#margin-btn");
 
 /**
  * PartI Get goalPts points from max pts and week num
- * @param {Person} pepI
- * @param {Course} courseI
+ * @param {Person} p from pepI
+ * @param {Course} c from courseI
  * @return {Number} GoalPts
  */
-function getGoalPts(pepI, courseI) {
-  const max = courseI.maxPts;
-  const pts = Math.ceil(max * (100 - courseI.scale * pepI.goalNum / 100));
+function getGoalPts(p, c) {
+  const max = c.maxPts;
+  const pts = Math.ceil(max * (100 - c.scale * p.goalNum / 100));
   return pts;
 }
 
@@ -41,10 +48,10 @@ function getGoalPts(pepI, courseI) {
  * @return {void} void; out put of class name and goalPts calculcated from getGoalPts()
  */
 function clickHandlerSet(pepI, courseI) {
-  const goalPts = getGoalPts(myUser, myClass);
+  const goalPts = getGoalPts(pepI, courseI);
   const needStrPts = goalPts.toString("n0");
-  if (courseI.goalPts(pepI.goal) > 0) {
-    any = `You chose class ${courseI.className()}.  Your points for your goal is ${needStrPts} `;
+  if (goalPts > 0) {
+    any = `You chose class ${courseI.className()}.  Your points for your goal = ${needStrPts}.`;
   } else {
     any = `Not clear on your goal for this class. ${myCourseI.className()}, right?`;
   }
@@ -63,9 +70,9 @@ classGoalBtn.addEventListener("click", clickHandlerSet(myUser, myClass));
 
 /**
  * Part II method: Get percentage
- * @param {number} a user current points ; pts need
- * @param {number} B class current max pts; pts remaining
- * @return {string} percent avg for output
+ * @param {Number} a user current points ; pts need
+ * @param {Number} B class current max pts; pts remaining
+ * @return {String} percent avg for output
  */
 function getPercent(a, B) {
   const percent = a / B;
@@ -96,13 +103,13 @@ function getCurrentPts(wkNum) {
  * use person and cours info to produce results
  * @param {Person} pepII user person Obj data
  * @param {Course} courseII course's data info
- * return { } void but inserts results to DOM
+ * @return {void} inserts results to DOM
  */
 function clickHandler(pepII, courseII) {
   // const week = pepII.getweekNum;
   // need array of wkly pts for class; create here? const byWeekPts[] = new myCourse.weekPts();
-  const currentPts = getCurrentPts(week);
-  const percent = getPercent(userPts, currentPts);
+  const weekTotPts = getCurrentPts(week);
+  const percent = getPercent(pepII.userPts, weekTotPts);
 
   const track = `Currently you have a ${percent}%.`;
   document.querySelector("#out-track").textContent = track;

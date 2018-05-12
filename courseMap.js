@@ -16,8 +16,12 @@ courseMap.set("LA252", {
   max: 533,
   scale: 10,
   weekPts: [2, 16, 14, 18, 64, 16, 21, 16, 64, 16, 14, 14, 64, 14, 14, 0, 95],
-  week10: 247,
-  maxPts: 469
+  maxPts() {},
+  *generator() {
+    weekPts.sum();
+  },
+  week10: 247
+  // , maxPts: 469
 });
 
 courseMap.set("HT187", {
@@ -46,3 +50,14 @@ courseMap.set("MM177", {
   maxPts: 445,
   week10: 170
 });
+
+/** dev note: check out mdn computed property name
+ * could use this with instrucotor Lawerance Appelbaum
+ * (instructor.charAt(0).toUpperCase() + classNum.ToString())
+ *   maxPts: function() {
+    weeklyPts.sum();
+  },
+  get maxPts() {
+    return maxPts;
+  },
+ */
