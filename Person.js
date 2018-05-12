@@ -1,4 +1,4 @@
-const Person = {
+Person = {
   goal: 1,
   currentPts: 1,
   classIn: 101,

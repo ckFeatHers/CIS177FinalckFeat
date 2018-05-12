@@ -1,18 +1,17 @@
-const Course(key) = {
+let Course = {
   classId: 101,
   className: "CIS-101: Class with Instructor",
   scale: 1,
   // weekPts: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
   // points: [scale][weekPts]
   week10: 1,
-  maxPts: 2,
-  getGoal(goalNum) {Math.ceil(maxPts * (100 - (scale * goalNum) / 100))}
-}
+  maxPts: 2 // sum(range(0,Person.week))
+};
 
 const courseMap = new Map();
 
 courseMap.set("LA195", {
-  classId: 195,
+  classNum: 195,
   className: "CIS-195: Intro to Database with Appelbaum",
   max: 533,
   scale: 10,
@@ -22,6 +21,7 @@ courseMap.set("LA195", {
 });
 
 coursesMap.set("LA252", {
+  classNum: 252,
   className: "CIS-252 C# with Appelbaum",
   max: 533,
   scale: 10,
@@ -31,16 +31,16 @@ coursesMap.set("LA252", {
 });
 
 coursesMap.set("HT187", {
-  classId: 252,
+  classNum: 187,
   className: "CIS-187 Java with Thomas",
-  scale: 10,
+  scale: 7,
   // weekPts: [0,25,25,100,0,125,225,0,125,25,125,225,0,125,0,125,225]
   maxPts: 1525,
   week10: 650
 });
 
 coursesMap.set("HT299", {
-  classId: 165,
+  classNum: 165,
   className: "CIS-165 Python with Thomas",
   scale: 7,
   // weekPts:[0, 25, 25, 125, 125, 225, 0, 125, 25, 125, 225, 0, 125, 25, 125, 25, 225]
@@ -49,7 +49,7 @@ coursesMap.set("HT299", {
 });
 
 coursesMap.set("MM177", {
-  classId: 177,
+  classNum: 177,
   className: "CIS-177 JavaScript with Misra",
   scale: 10,
   // weekPts: [0,10,10,10,10,10,10,5,5,100,10,10,10,10,15,20,200]
