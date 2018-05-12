@@ -1,5 +1,5 @@
 
-const course = new Map(document.querySelector("#course").value);
+const myClass = new Course(document.querySelector("#course").value);
 
 /**
  * Convert a letter grade from user input.
@@ -27,11 +27,11 @@ function getGoal(c) {
         less = 0;
         break;
     }
-        const pts = Math.ceil(c.max * (100 - (less*c.scale) / 100);
+        const pts = Math.ceil(c.maxPts() * (100 - (less*c.scale()) / 100);
     return pts;
   }
 
-  console.log(getGoal(course));
+  console.log(getGoal(myClass));
   
   /* 
   Developer's Note: Consider separating out part 2 and 3 into their own JS files. Just be wary of the order in which the code is loaded in from index.html or you may get 'undefined' issues.
