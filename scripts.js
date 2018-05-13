@@ -1,87 +1,55 @@
-
-
-let goal = document.querySelector("#goal").value;
-let userPts = document.querySelector("#user-pts").value;
-let classId = document.querySelector("#course").value;
-let weekStr = document.querySelector("#week-num").value;
-let week = parseInt(document.querySelector("#week-num").value);
-console.log("user data input from query.");
-console.log(goal, "goal", userPts, "uPts", classId, "ID", week, "Week");
-
-week1 = parseInt(weekStr);
-console.log("week1", week1, "weekStr", weekStr, "week", week);
-
 /**
- *  use form elements to set a PERSON constructor
- * @param {Number} g grade factorial
- * @param {Number} up user Points
- * @param {String} ci classId
- * @param {Number} w week# aka 10
- * @return {void} Object Person constructor
+ * SEE NOTES.js for description. * 
  */
-function Person(g, up, ci, w) {
-  goal = g;
-  userPts = up;
-  classId = ci;
-  week = w;
-  console.log("Inside person constructor");
-  console.log(goal, "goal", userPts, "uPts", classId, "ID", week, "Week");
-}
-// initializes a Person from CONSTRUCTOR to use in prog
-const myUser = new Person(goal, userPts, classId, week);
-console.log("myUser and then .properties ");
-console.log(myUser);
-console.log(myUser.userPts, "myUser.userPts", myUser.classId, "myUser.classId");
-console.log(goal, "goal", userPts, "uPts", classId, "ID", week, "Week");
 
-/** Part I Get Value of Max Points
- * @param {String} id
+let goal = parseInt(document.querySelector("#goal").value);
+let userPts = parseInt(document.querySelector("#user-pts").value);
+let classId = document.querySelector("#course").value;
+let week = parseInt(document.querySelector("#week-num").value);
+
+/** Part I Get Value of Max Points Available
+ * 2 refrences
+ * @param {String} id class Id
+ * @param {Number} wk week num; total 17
  * @return {Number} max
  */
-function getTotalMax(id) {
-  console.log(id, "id");
-  const wkStr = courseMap.get(id).week;
-  console.log(wkStr, "wkStr");
-  const wk = parseInt(wkStr);
-  console.log(wk, "wk");
+function getTotalPts(id, wk) {
   let total = 0;
-  const points = courseMap.get(id).weekPts;
-  for (let i = 0; i < wk; wk++) {
-    total += points[i];
+  const pointsArray = courseMap.get(id).weekPts;
+  for (let i = 0; i < wk; i++) {
+    total += pointsArray[i];
   }
   return total;
 }
-const max = getTotalMax(classId);
 
+/** PART I : Target Gaol Points for this Class
+ * @param {Number} id class max
+ * @param {Number} X goal; facotr of scale
+ * @return {Number} goal points for user in class
+ */
+function getGoalPts(id, X) {
+  const max = getTotalPts(classId, 17);
+  const sc = courseMap.get(classId).scale;
+  const pts = Math.ceil(max * (100 - sc * X) / 100);
+  console.log(pts);
+  return pts;
+}
 
-const myClass = {
+let myClass = {
   courseName: courseMap.get(classId).className,
   scale: courseMap.get(classId).scale,
-  maxPts: max,
-  goalPts: uGoal
-}
-courseMap.get(classId);
+  maxPts: getTotalPts(classId, 17),
+  weekPts: getTotalPts(classId, week),
+  goalPts: getGoalPts(classId, goal)
+};
+
 console.log(myClass);
 
 /** **********************   PART I  ******************************/
 // After data gather for person and course no methods needed. click Handler.
 
-/**
- * PartI Get goalPts points from max pts and week num
- * @param {Person} p from pepI
- * @param {Course} c from courseI
- * @return {Number} GoalPts
- */
-function getGoalPts(p, c) {
-  console.log("inside getGoalPts");
-  console.log(p);
-  console.log(c);
-  const max = c.maxPts;
-  console.log(max);
-  const pts = Math.ceil(max * (100 - c.scale * p.goalNum / 100));
-  console.log(pts);
-  return pts;
-}
+
+
 
 /** **********************   PART II  ******************************/
 // Methods get percent and get Goal points with combo of person and course data. click handler.
