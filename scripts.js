@@ -102,7 +102,7 @@ console.log(courseMap.get("MM177").className);
 console.log(courseMap.get("MM177").scale);
 console.log(courseMap.get("MM177").maxPts);
 console.log(courseMap.get("MM177").week10);
-console.log(".weekTotPts array is undefined. Course is undefined")
+console.log(".weekTotPts array is undefined. Course is undefined");
 console.log(courseMap.get("LA252").weekTotPts);
 console.log(Course);
 
@@ -126,8 +126,13 @@ const marginBtn = document.querySelector("#margin-btn");
  * @return {Number} GoalPts
  */
 function getGoalPts(p, c) {
+  console.log("inside getGoalPts");
+  console.log(p);
+  console.log(c);
   const max = c.maxPts;
+  console.log(max);
   const pts = Math.ceil(max * (100 - c.scale * p.goalNum / 100));
+  console.log(pts);
   return pts;
 }
 
@@ -138,12 +143,16 @@ function getGoalPts(p, c) {
  */
 function clickHandlerSet(pepI, courseI) {
   const goalPts = getGoalPts(pepI, courseI);
-  const needStrPts = goalPts.toString("n0");
+  console.log("inside clickHset");
+  console.log(goalPts);
+  const needStrPts = goalPts;
+  console.log(needStrPts);
   if (goalPts > 0) {
     any = `You chose class ${courseI.className()}.  Your points for your goal = ${needStrPts}.`;
   } else {
-    any = `Not clear on your goal for this class. ${myCourseI.className()}, right?`;
+    any = `Not clear on your goal for this class. ${courseI.className}, right?`;
   }
+  console.log(any);
   document.querySelector("#out-Goal").textContent = any;
 }
 
@@ -165,24 +174,26 @@ classGoalBtn.addEventListener("click", clickHandlerSet(myUser, myClass));
  */
 function getPercent(a, B) {
   const percent = a / B;
-  str = percent.toString("nl") + "%";
+  str = percent + "%";
+  console.log("a", a, "B", B, "str", str, "inside get Percent");
   return str;
 }
 
 /**
  * PartII method: Get current class pts up to this week
  * @param {Number} wkNum = week10 now, later use num array and wk-num   *
- * @return {Number} total points in the range 1-wk.
- * @param {Number} num number of weeks
+ * @param {Course} cII courseII total points in the range 1-wk.
+ * @return {Number} num number of weeks
  */
-function getCurrentPts(wkNum) {
+function getCurrentPts(wkNum, cII) {
   let total = 0;
   // const wkPts = myClass.week10();
   // for(i = 0; i < wk; i++)
   // {
   // total += wkPts[i];
   // }
-  total = week10;
+  total = cII.week10;
+  console.log(total);
   return total;
 }
 // use this with array in course obj @param {listofNumbers[]} wkPts points of class's syllibus
@@ -195,13 +206,22 @@ function getCurrentPts(wkNum) {
  * @return {void} inserts results to DOM
  */
 function clickHandlerTrack(pepII, courseII) {
+  console.log("inside clickHtrack");
   // const week = pepII.getweekNum;
   // need array of wkly pts for class; create here? const byWeekPts[] = new myCourse.weekPts();
-  const weekTotPts = getCurrentPts(week);
+  console.log(week);
+  console.log(pepII);
+  console.log(pepII.userPts);
+  const weekTotPts = getCurrentPts(week, courseII);
   const percent = getPercent(pepII.userPts, weekTotPts);
 
+  console.log(weekTotPts);
+  console.log(percent);
+
   const track = `Currently you have a ${percent}%.`;
-  document.querySelector("#out-track").textContent = track;
+  console.log(track);
+  document.querySelector("#out-Track").textContent =
+    "223 wont assign track with NaN%";
 }
 
 trackBtn.addEventListener("click", clickHandlerTrack(myUser, myClass));
@@ -217,6 +237,7 @@ trackBtn.addEventListener("click", clickHandlerTrack(myUser, myClass));
  */
 function getDif(pig, goat) {
   const weight = pig - goat;
+  console.log(weight, "weight ", pig, "pig ", goat);
   return weight;
 }
 
@@ -229,15 +250,17 @@ function getDif(pig, goat) {
 function clickHandlerMargin(pepIII, courseIII) {
   // retieve goalPts again or maybe move to Obj method.?
   const pepGoalPts = getGoalPts(pepIII, courseIII);
-
+  console.log("Inside clickH Margin", pepGoalPts);
   // get points Need for goal AND get points remining in class
   const remainNeed = getDif(pepGoalPts, pepIII.currentPts);
   const remainClass = getDif(courseIII.maxPts, courseIII.week);
-
+  console.log("need ", remainNeed, "in class ", remainClass);
   // get info for output: MARGIN for accomplishing grade and %
   const margin = getDif(remainClass, remainNeed);
+  console.log(margin, "!");
   const percGoal = getPercent(remainNeed, remainClass);
-
+  console.log(percGoal);
+  const x = margin * -1; // if negative missed margin so flipping sign;
   let marginMsg;
   if (margin > 0) {
     marginMsg = `You have a margin of ${margin} to get your goal and need ${percGoal}% on all remaining assignments.`;
@@ -246,6 +269,7 @@ function clickHandlerMargin(pepIII, courseIII) {
   } else {
     marginMsg = `You have missed your goal by ${x}. A new goal is needed.`;
   }
+  console.log(marginMsg);
   document.querySelector("#out-Margin").textContent = marginMsg;
 }
 
