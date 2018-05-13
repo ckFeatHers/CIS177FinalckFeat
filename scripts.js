@@ -1,26 +1,115 @@
 /** ******************CREATE OBJ for use in Program****************** */
 /**
- *  use form elements
- *  to set a PERSON constructor
+ * Processing data: Change incoming to # and can delete
+ * @param {string} grade
+ * @return {Number} goal factorial
  */
-function Person() {
-  goal = document.querySelector("#goal").value;
-  userPts = document.querySelector("#user-pts").value;
-  classId = document.querySelector("#course").value;
-  week = document.querySelector("#week-num").value;
+function getGoal(grade) {
+  let factor;
+  switch (grade) {
+    case "B":
+      factor = 2;
+      break;
+    case "C":
+      factor = 3;
+      break;
+    case "P":
+      factor = 4;
+      break;
+    default:
+      factor = 1;
+      break;
+  }
+  console.log(factor);
+  return factor;
+}
+
+const letter = document.querySelector("#goal").value;
+let userPts = document.querySelector("#user-pts").value;
+let classId = document.querySelector("#course").value;
+let week = document.querySelector("#week-num").value;
+let cllbck = getGoal(letter);
+let goal = cllbck;
+console.log("user data input from queryS.");
+console.log(cllbck);
+console.log(letter);
+// need to set form to feed back goal directly
+// until then use letter and convert to number
+console.log(goal);
+console.log(userPts);
+console.log(classId);
+console.log(week);
+/**
+ *  use form elements to set a PERSON constructor
+ * @param {Number} g grade factorial
+ * @param {Number} up user Points
+ * @param {String} ci classId
+ * @param {Number} w week# aka 10
+ * @return {void} Object Person constructor
+ */
+function Person(g, up, ci, w) {
+  goal = g;
+  userPts = up;
+  classId = ci;
+  week = w;
+  console.log("Inside person constructor");
+  console.log(g);
+  console.log(up);
+  console.log(ci);
+  console.log(w);
+  // need to set form to feed back goal directly
+  // until then use letter and convert to number
+  console.log(goal);
+  console.log(userPts);
+  console.log(classId);
+  console.log(week);
 }
 
 // initializes a Person from CONSTRUCTOR to use in prog
-const myUser = new Person();
+const myUser = new Person(goal, userPts, classId, week);
+console.log("myUser and then .properties ");
+console.log(myUser);
+console.log(myUser[goal]);
+console.log(myUser.goal);
+console.log(myUser.letter);
+console.log(myUser.userPts);
+console.log(myUser.classId);
+console.log(myUser.week);
+console.log("Person and then .properties");
+console.log(Person);
+console.log(Person.letter);
+console.log(Person.userPts);
+console.log(Person.classId);
+console.log(Person.week);
+console.log(Person.goal);
 
-/** Assign courseMap Obj definitiona with key: classId 
+/** Assign courseMap Obj definitiona with key: classId
  * @param {string} myUser.classId
  * pulling object from map to define OBJECT COURSE
  * Declared then create myClass to use in program.
  */
-let Course = courseMap.get(myUser.classId);
 
-const myClass = new Course();
+let Course = courseMap.get(myUser.classId);
+console.log("courseMap.get(classId) and 'LA252' values.");
+console.log(courseMap.get("LA195"));
+console.log(courseMap.get(classId));
+console.log(courseMap.get("LA252"));
+console.log(courseMap.get("HT299"));
+console.log(courseMap.get("HT187"));
+console.log(courseMap.get("MM177"));
+console.log(courseMap.get("MM177").classId);
+console.log(courseMap.get("MM177").className);
+console.log(courseMap.get("MM177").scale);
+console.log(courseMap.get("MM177").maxPts);
+console.log(courseMap.get("MM177").week10);
+console.log(".weekTotPts array is undefined. Course is undefined")
+console.log(courseMap.get("LA252").weekTotPts);
+console.log(Course);
+
+const myClass = courseMap.get(classId);
+console.log(myClass);
+console.log(myClass.className);
+console.log(myClass.maxPts);
 
 // buttons
 const classGoalBtn = document.querySelector("#goal-btn");
@@ -105,7 +194,7 @@ function getCurrentPts(wkNum) {
  * @param {Course} courseII course's data info
  * @return {void} inserts results to DOM
  */
-function clickHandler(pepII, courseII) {
+function clickHandlerTrack(pepII, courseII) {
   // const week = pepII.getweekNum;
   // need array of wkly pts for class; create here? const byWeekPts[] = new myCourse.weekPts();
   const weekTotPts = getCurrentPts(week);
@@ -115,7 +204,7 @@ function clickHandler(pepII, courseII) {
   document.querySelector("#out-track").textContent = track;
 }
 
-trackBtn.addEventListener("click", clickHandler(myUser, myClass));
+trackBtn.addEventListener("click", clickHandlerTrack(myUser, myClass));
 
 /** **********************   PART III  ******************************/
 // Method needed: Percentage from partII, Difference. Click Handler.
@@ -138,8 +227,14 @@ function getDif(pig, goat) {
  * @return {void} out put to browser
  */
 function clickHandlerMargin(pepIII, courseIII) {
-  const remainNeed = getDif(myClass.goalPts, myUser.currentPts);
-  const remainClass = getDif(myClass.maxPts, myClass.week);
+  // retieve goalPts again or maybe move to Obj method.?
+  const pepGoalPts = getGoalPts(pepIII, courseIII);
+
+  // get points Need for goal AND get points remining in class
+  const remainNeed = getDif(pepGoalPts, pepIII.currentPts);
+  const remainClass = getDif(courseIII.maxPts, courseIII.week);
+
+  // get info for output: MARGIN for accomplishing grade and %
   const margin = getDif(remainClass, remainNeed);
   const percGoal = getPercent(remainNeed, remainClass);
 

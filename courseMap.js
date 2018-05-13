@@ -18,8 +18,8 @@ courseMap.set("LA252", {
   *generator() {
     weekPts.sum();
   },
-  week10: 247
-  // , maxPts: 469
+  week10: 247,
+  maxPts: 469
 });
 
 courseMap.set("HT187", {
