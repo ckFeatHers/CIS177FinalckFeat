@@ -9,7 +9,7 @@ courseMap.set("LA195", {
 courseMap.set("LA252", {
   className: "CIS-252 C# with Appelbaum",
   scale: 10,
-  weekPts: [2, 16, 14, 18, 64, 16, 21, 16, 64, 16, 14, 14, 64, 14, 14, 0, 95],
+  weekPts: [2, 16, 14, 18, 64, 16, 21, 16, 64, 16, 14, 14, 64, 14, 14, 0, 95]
 });
 
 courseMap.set("HT187", {
