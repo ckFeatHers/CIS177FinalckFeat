@@ -95,7 +95,7 @@ function clickHandlerMargin(uPts, cIII) {
   console.log("Inside clickH Margin", uPts);
 
   // get points Need for goal AND get points remining in class
-  const remainNeed = getDif(uPts, cIII.weekPts);
+  const remainNeed = getDif(cIII.weekPts, uPts);
   const remainClass = getDif(cIII.maxPts, cIII.weekPts);
   console.log("need ", remainNeed, "in class ", remainClass);
 

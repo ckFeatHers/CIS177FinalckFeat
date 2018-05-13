@@ -25,7 +25,7 @@ classGoalBtn.addEventListener("click", clickHandlerSet(myClass));
  */
 function clickHandlerTrack(uPts, courseII) {
   const percent = getPercent(uPts, courseII.weekPts);
-  const track = `Currently you have a ${percent}%.`;
+  const track = `Currently you have a ${percent}% in the class.`;
   document.querySelector("#out-Track").textContent = track;
 }
 
