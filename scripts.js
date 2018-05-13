@@ -1,44 +1,16 @@
-/** ******************CREATE OBJ for use in Program****************** */
-/**
- * Processing data: Change incoming to # and can delete
- * @param {string} grade
- * @return {Number} goal factorial
- */
-function getGoal(grade) {
-  let factor;
-  switch (grade) {
-    case "B":
-      factor = 2;
-      break;
-    case "C":
-      factor = 3;
-      break;
-    case "P":
-      factor = 4;
-      break;
-    default:
-      factor = 1;
-      break;
-  }
-  console.log(factor);
-  return factor;
-}
 
-const letter = document.querySelector("#goal").value;
+
+let goal = document.querySelector("#goal").value;
 let userPts = document.querySelector("#user-pts").value;
 let classId = document.querySelector("#course").value;
-let week = document.querySelector("#week-num").value;
-let cllbck = getGoal(letter);
-let goal = cllbck;
-console.log("user data input from queryS.");
-console.log(cllbck);
-console.log(letter);
-// need to set form to feed back goal directly
-// until then use letter and convert to number
-console.log(goal);
-console.log(userPts);
-console.log(classId);
-console.log(week);
+let weekStr = document.querySelector("#week-num").value;
+let week = parseInt(document.querySelector("#week-num").value);
+console.log("user data input from query.");
+console.log(goal, "goal", userPts, "uPts", classId, "ID", week, "Week");
+
+week1 = parseInt(weekStr);
+console.log("week1", week1, "weekStr", weekStr, "week", week);
+
 /**
  *  use form elements to set a PERSON constructor
  * @param {Number} g grade factorial
@@ -53,68 +25,43 @@ function Person(g, up, ci, w) {
   classId = ci;
   week = w;
   console.log("Inside person constructor");
-  console.log(g);
-  console.log(up);
-  console.log(ci);
-  console.log(w);
-  // need to set form to feed back goal directly
-  // until then use letter and convert to number
-  console.log(goal);
-  console.log(userPts);
-  console.log(classId);
-  console.log(week);
+  console.log(goal, "goal", userPts, "uPts", classId, "ID", week, "Week");
 }
-
 // initializes a Person from CONSTRUCTOR to use in prog
 const myUser = new Person(goal, userPts, classId, week);
 console.log("myUser and then .properties ");
 console.log(myUser);
-console.log(myUser[goal]);
-console.log(myUser.goal);
-console.log(myUser.letter);
-console.log(myUser.userPts);
-console.log(myUser.classId);
-console.log(myUser.week);
-console.log("Person and then .properties");
-console.log(Person);
-console.log(Person.letter);
-console.log(Person.userPts);
-console.log(Person.classId);
-console.log(Person.week);
-console.log(Person.goal);
+console.log(myUser.userPts, "myUser.userPts", myUser.classId, "myUser.classId");
+console.log(goal, "goal", userPts, "uPts", classId, "ID", week, "Week");
 
-/** Assign courseMap Obj definitiona with key: classId
- * @param {string} myUser.classId
- * pulling object from map to define OBJECT COURSE
- * Declared then create myClass to use in program.
+/** Part I Get Value of Max Points
+ * @param {String} id
+ * @return {Number} max
  */
+function getTotalMax(id) {
+  console.log(id, "id");
+  const wkStr = courseMap.get(id).week;
+  console.log(wkStr, "wkStr");
+  const wk = parseInt(wkStr);
+  console.log(wk, "wk");
+  let total = 0;
+  const points = courseMap.get(id).weekPts;
+  for (let i = 0; i < wk; wk++) {
+    total += points[i];
+  }
+  return total;
+}
+const max = getTotalMax(classId);
 
-let Course = courseMap.get(myUser.classId);
-console.log("courseMap.get(classId) and 'LA252' values.");
-console.log(courseMap.get("LA195"));
-console.log(courseMap.get(classId));
-console.log(courseMap.get("LA252"));
-console.log(courseMap.get("HT299"));
-console.log(courseMap.get("HT187"));
-console.log(courseMap.get("MM177"));
-console.log(courseMap.get("MM177").classId);
-console.log(courseMap.get("MM177").className);
-console.log(courseMap.get("MM177").scale);
-console.log(courseMap.get("MM177").maxPts);
-console.log(courseMap.get("MM177").week10);
-console.log(".weekTotPts array is undefined. Course is undefined");
-console.log(courseMap.get("LA252").weekTotPts);
-console.log(Course);
 
-const myClass = courseMap.get(classId);
+const myClass = {
+  courseName: courseMap.get(classId).className,
+  scale: courseMap.get(classId).scale,
+  maxPts: max,
+  goalPts: uGoal
+}
+courseMap.get(classId);
 console.log(myClass);
-console.log(myClass.className);
-console.log(myClass.maxPts);
-
-// buttons
-const classGoalBtn = document.querySelector("#goal-btn");
-const trackBtn = document.querySelector("#track-btn");
-const marginBtn = document.querySelector("#margin-btn");
 
 /** **********************   PART I  ******************************/
 // After data gather for person and course no methods needed. click Handler.
@@ -135,33 +82,6 @@ function getGoalPts(p, c) {
   console.log(pts);
   return pts;
 }
-
-/** PartI Click Handler : caputures data from html and creates output for PART I
- * @param {Person} pepI input info
- * @param {Course} courseI data from Course
- * @return {void} void; out put of class name and goalPts calculcated from getGoalPts()
- */
-function clickHandlerSet(pepI, courseI) {
-  const goalPts = getGoalPts(pepI, courseI);
-  console.log("inside clickHset");
-  console.log(goalPts);
-  const needStrPts = goalPts;
-  console.log(needStrPts);
-  if (goalPts > 0) {
-    any = `You chose class ${courseI.className()}.  Your points for your goal = ${needStrPts}.`;
-  } else {
-    any = `Not clear on your goal for this class. ${courseI.className}, right?`;
-  }
-  console.log(any);
-  document.querySelector("#out-Goal").textContent = any;
-}
-
-classGoalBtn.addEventListener("click", clickHandlerSet(myUser, myClass));
-
-/* 
-  Developer's Note: Consider separating out part 2 and 3 into their own JS files. Just be wary of the order in which the code is loaded in from index.html or you may get 'undefined' issues.
-  */
-/* Dev note: Noted. The use of map and obj has kept code to min.   Will try one script.js for now. ckf*/
 
 /** **********************   PART II  ******************************/
 // Methods get percent and get Goal points with combo of person and course data. click handler.
@@ -198,6 +118,58 @@ function getCurrentPts(wkNum, cII) {
 }
 // use this with array in course obj @param {listofNumbers[]} wkPts points of class's syllibus
 
+/** **********************   PART III  ******************************/
+// Method needed: Percentage from partII, Difference. Click Handler.
+
+/**
+ * Part III method : get Difference
+ * @param {Number} pig GoalPts; maxPts; RemainClass
+ * @param {Number} goat user-pts; wkMax; RemainNeed
+ * @return {Number} Difference of two numbers
+ */
+function getDif(pig, goat) {
+  const weight = pig - goat;
+  console.log(weight, "weight ", pig, "pig ", goat);
+  return weight;
+}
+
+// DOM SCRIPTS **************************************************************
+
+// buttons
+const classGoalBtn = document.querySelector("#goal-btn");
+const trackBtn = document.querySelector("#track-btn");
+const marginBtn = document.querySelector("#margin-btn");
+
+/** ************************************************************************** */
+/** PartI Click Handler : caputures data from html and creates output for PART I
+ * @param {Person} pepI input info
+ * @param {Course} courseI data from Course
+ * @return {void} void; out put of class name and goalPts calculcated from getGoalPts()
+ */
+function clickHandlerSet(pepI, courseI) {
+  const goalPts = getGoalPts(pepI, courseI);
+  console.log("inside clickHset");
+  console.log(goalPts);
+  const needStrPts = goalPts;
+  console.log(needStrPts);
+  if (goalPts > 0) {
+    any = `You chose class ${courseI.className()}.  Your points for your goal = ${needStrPts}.`;
+  } else {
+    any = `Not clear on your goal for this class. ${courseI.className}, right?`;
+  }
+  console.log(any);
+  document.querySelector("#out-Goal").textContent = any;
+}
+
+classGoalBtn.addEventListener("click", clickHandlerSet(myUser, myClass));
+
+/* 
+  Developer's Note: Consider separating out part 2 and 3 into their own JS files. Just be wary of the order in which the code is loaded in from index.html or you may get 'undefined' issues.
+  */
+/* Dev note: Noted. The use of map and obj has kept code to min.   Will try one script.js for now. ckf*/
+
+
+/** ************************************************************************** */
 /**
  * Part II Click Handler
  * use person and cours info to produce results
@@ -226,21 +198,7 @@ function clickHandlerTrack(pepII, courseII) {
 
 trackBtn.addEventListener("click", clickHandlerTrack(myUser, myClass));
 
-/** **********************   PART III  ******************************/
-// Method needed: Percentage from partII, Difference. Click Handler.
-
-/**
- * Part III method : get Difference
- * @param {Number} pig GoalPts; maxPts; RemainClass
- * @param {Number} goat user-pts; wkMax; RemainNeed
- * @return {Number} Difference of two numbers
- */
-function getDif(pig, goat) {
-  const weight = pig - goat;
-  console.log(weight, "weight ", pig, "pig ", goat);
-  return weight;
-}
-
+/** ******************************************************************************** */
 /**
  * Part III click Handler
  * @param {Person} pepIII
