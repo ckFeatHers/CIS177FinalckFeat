@@ -18,10 +18,11 @@ let week = parseInt(document.querySelector("#week-num").value);
  */
 function getTotalPts(id, wk) {
   let total = 0;
-  const pointsArray = courseMap.get(id).weekPts;
+  const ptsArray = courseMap.get(id).weekPts;
   for (let i = 0; i < wk; i++) {
-    total += pointsArray[i];
+    total += ptsArray[i];
   }
+  console.log(total);
   return total;
 }
 
@@ -33,7 +34,9 @@ function getTotalPts(id, wk) {
 function getGoalPts(id, X) {
   const max = getTotalPts(classId, 17);
   const sc = courseMap.get(classId).scale;
+
   const pts = Math.ceil(max * (100 - sc * X) / 100);
+
   return pts;
 }
 
@@ -46,7 +49,6 @@ let myClass = {
   weekPts: getTotalPts(classId, week),
   goalPts: getGoalPts(classId, goal)
 };
-
 /** **********************   PART II  ******************************/
 // Methods get percent and get Goal points. output click handler: see dom.js
 
@@ -58,6 +60,7 @@ let myClass = {
  */
 function getPercent(a, B) {
   const percent = Math.floor(1000 * a / B) / 10;
+
   return percent;
 }
 
@@ -72,14 +75,15 @@ function getPercent(a, B) {
  */
 function getDif(pig, goat) {
   const weight = pig - goat;
+
   return weight;
 }
 // DOM SCRIPTS **************************************************************
 
 /** buttons*/
-const classGoalBtn = document.querySelector("#goal-btn");
-const trackBtn = document.querySelector("#track-btn");
-const marginBtn = document.querySelector("#margin-btn");
+// const classGoalBtn = document.querySelector("#goal-btn");
+// const trackBtn = document.querySelector("#track-btn");
+// const marginBtn = document.querySelector("#margin-btn");
 
 /** ******************************************************************************** */
 /** PART I Click Handler
@@ -88,6 +92,7 @@ const marginBtn = document.querySelector("#margin-btn");
  */
 function clickHandlerSet(courseI) {
   const gp = courseI.goalPts;
+
   if (gp > 0) {
     any = `Course: ${
       courseI.className
@@ -95,14 +100,15 @@ function clickHandlerSet(courseI) {
   } else {
     any = `Not clear on your goal for this class. ${courseI.className}, right?`;
   }
+
   document.querySelector("#out-Goal").textContent = any;
 }
 
+const classGoalBtn = document.querySelector("#goal-btn");
 classGoalBtn.addEventListener("dbclick", clickHandlerSet(myClass));
 
 /** ******************************************************************** */
 
-trackBtn.addEventListener("dbclick", clickHandlerTrack(userPts, myClass));
 /**
  * Part II Click Handler
  * @param {Number} uPts user points from input
@@ -110,11 +116,19 @@ trackBtn.addEventListener("dbclick", clickHandlerTrack(userPts, myClass));
  * @return {void} inserts results to DOM
  */
 function clickHandlerTrack(uPts, courseII) {
-  const percent = getPercent(uPts, courseII.weekPts);
-  const track = `Currently you have a ${percent}% in the class.`;
+  let track;
+  if (courseII.weekPts != 0) {
+    const percent = getPercent(uPts, courseII.weekPts);
+    track = `Currently you have a ${percent}% in the class.`;
+  } else {
+    track = `Please check your user Points.`;
+  }
+
   document.querySelector("#out-Track").textContent = track;
 }
 
+const trackBtn = document.querySelector("#track-btn");
+trackBtn.addEventListener("dbclick", clickHandlerTrack(userPts, myClass));
 /** ******************************************************************** */
 /**
  * Part III click Handler
@@ -141,4 +155,5 @@ function clickHandler(uPts, cIII) {
   document.querySelector("#out-Margin").textContent = marginMsg;
 }
 
+const marginBtn = document.querySelector("#margin-btn");
 marginBtn.addEventListener("click", clickHandler(userPts, myClass));

@@ -9,7 +9,7 @@ courseMap.set("LA195", {
 courseMap.set("LA252", {
   className: "CIS-252 C# with Appelbaum",
   scale: 10,
-  weekPts: [2, 16, 14, 18, 64, 16, 21, 16, 64, 16, 14, 14, 64, 14, 14, 0, 95]
+  weekPts: [2, 16, 14, 18, 64, 16, 21, 16, 64, 14, 16, 14, 64, 14, 14, 7, 95]
 });
 
 courseMap.set("HT187", {
@@ -30,7 +30,7 @@ courseMap.set("HT187", {
     225,
     0,
     125,
-    0,
+    25,
     125,
     225
   ]
@@ -41,7 +41,6 @@ courseMap.set("HT187", {
 // I could not figure out difference from the other courseMap sets.?
 
 courseMap.set("HT299", {
-  classNum: 165,
   className: "CIS-165 Python with Thomas",
   scale: 7,
   weekPts: [
@@ -66,7 +65,6 @@ courseMap.set("HT299", {
 });
 
 courseMap.set("MM177", {
-  classNum: 177,
   className: "CIS-177 JavaScript with Misra",
   scale: 10,
   weekPts: [0, 10, 10, 10, 10, 10, 10, 5, 5, 100, 10, 10, 10, 10, 15, 20, 200]
