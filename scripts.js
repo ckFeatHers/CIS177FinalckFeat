@@ -101,6 +101,8 @@ function clickHandlerSet(courseI) {
 classGoalBtn.addEventListener("dbclick", clickHandlerSet(myClass));
 
 /** ******************************************************************** */
+
+trackBtn.addEventListener("dbclick", clickHandlerTrack(userPts, myClass));
 /**
  * Part II Click Handler
  * @param {Number} uPts user points from input
@@ -113,8 +115,6 @@ function clickHandlerTrack(uPts, courseII) {
   document.querySelector("#out-Track").textContent = track;
 }
 
-trackBtn.addEventListener("click", clickHandlerTrack(userPts, myClass));
-
 /** ******************************************************************** */
 /**
  * Part III click Handler
@@ -124,11 +124,7 @@ trackBtn.addEventListener("click", clickHandlerTrack(userPts, myClass));
  * @param {Course} cIII
  * @return {void} out put to browser
  */
-function clickHandlerMargin(uPts, cIII) {
-  const need = getDif(cIII.goalPts, uPts);
-  const remain = getDif(cIII.maxPts, cIII.weekPts);
-  const percGoal = getPercent(need, remain);
-
+function clickHandler(uPts, cIII) {
   const margin = getDif(
     getDif(cIII.maxPts, cIII.weekPts),
     getDif(cIII.goalPts, uPts)
@@ -136,7 +132,7 @@ function clickHandlerMargin(uPts, cIII) {
 
   let marginMsg;
   if (margin > 0) {
-    marginMsg = `You have a margin of ${margin} points.  You can miss that many and still get your goal! Just get ${percGoal}% on all remaining assignments.`;
+    marginMsg = `You have a margin of ${margin} points.  You can miss that many and still get your goal!`;
   } else if (margin == 0) {
     marginMsg = `You have NO room for error for this goal.  You may want to reconsider.`;
   } else {
@@ -145,4 +141,4 @@ function clickHandlerMargin(uPts, cIII) {
   document.querySelector("#out-Margin").textContent = marginMsg;
 }
 
-marginBtn.addEventListener("click", clickHandlerMargin(userPts, myClass));
+marginBtn.addEventListener("click", clickHandler(userPts, myClass));
