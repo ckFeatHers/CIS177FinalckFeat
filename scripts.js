@@ -87,38 +87,36 @@ function getDif(pig, goat) {
 
 /** ******************************************************************************** */
 /** PART I Click Handler
- * @param {myClass} courseI data from Course
+ * userPts and class's goalPts needed.
  * @return {void} void; out put of class name and goalPts calculcated from getGoalPts()
  */
-function clickHandlerSet(courseI) {
-  const gp = courseI.goalPts;
+function clickHandlerSet() {
+  const gp = myClass.goalPts;
 
   if (gp > 0) {
-    any = `Course: ${
-      courseI.className
-    } needs ${gp} points to achieve your goal.`;
+    any = `${myClass.className} has a total of ${
+      myClass.maxPts
+    } points. You will need ${gp} points to achieve your goal.`;
   } else {
-    any = `Not clear on your goal for this class. ${courseI.className}, right?`;
+    any = `Not clear on your goal for this class. ${myClass.className}, right?`;
   }
-
   document.querySelector("#out-Goal").textContent = any;
 }
 
 const classGoalBtn = document.querySelector("#goal-btn");
-classGoalBtn.addEventListener("dbclick", clickHandlerSet(myClass));
+classGoalBtn.addEventListener("click", clickHandlerSet);
 
 /** ******************************************************************** */
 
 /**
  * Part II Click Handler
- * @param {Number} uPts user points from input
- * @param {Course} courseII course's data info
+ * To track; need userPts, weekPts(the total to date)
  * @return {void} inserts results to DOM
  */
-function clickHandlerTrack(uPts, courseII) {
+function clickHandlerTrack() {
   let track;
-  if (courseII.weekPts != 0) {
-    const percent = getPercent(uPts, courseII.weekPts);
+  if (myClass.weekPts != 0) {
+    const percent = getPercent(userPts, myClass.weekPts);
     track = `Currently you have a ${percent}% in the class.`;
   } else {
     track = `Please check your user Points.`;
@@ -128,20 +126,18 @@ function clickHandlerTrack(uPts, courseII) {
 }
 
 const trackBtn = document.querySelector("#track-btn");
-trackBtn.addEventListener("dbclick", clickHandlerTrack(userPts, myClass));
+trackBtn.addEventListener("click", clickHandlerTrack);
 /** ******************************************************************** */
 /**
  * Part III click Handler
  * -Margin: How many pts you need for goal and how many pts reamin
  * -% for remaining in class
- * @param {Number} uPts
- * @param {Course} cIII
  * @return {void} out put to browser
  */
-function clickHandler(uPts, cIII) {
+function clickHandler() {
   const margin = getDif(
-    getDif(cIII.maxPts, cIII.weekPts),
-    getDif(cIII.goalPts, uPts)
+    getDif(myClass.maxPts, myClass.weekPts),
+    getDif(myClass.goalPts, userPts)
   );
 
   let marginMsg;
@@ -150,10 +146,11 @@ function clickHandler(uPts, cIII) {
   } else if (margin == 0) {
     marginMsg = `You have NO room for error for this goal.  You may want to reconsider.`;
   } else {
-    marginMsg = `You have missed your goal by ${margin * -1}. A new goal is needed!`;
+    marginMsg = `You have missed your goal by ${margin *
+      -1}. A new goal is needed!`;
   }
   document.querySelector("#out-Margin").textContent = marginMsg;
 }
 
 const marginBtn = document.querySelector("#margin-btn");
-marginBtn.addEventListener("click", clickHandler(userPts, myClass));
+marginBtn.addEventListener("click", clickHandler);
