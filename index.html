@@ -33,7 +33,7 @@
           </div><!-- .form-group -->
 
           <div class="form-group col-6">
-            <label for="week-num">Enter the current semester week:</label>
+            <label for="week-num">Enter current week:</label>
             <select class="form-control" id="week-num">
               <option value= "17">Final</option>
               <option value= "16">week 16</option>
@@ -56,8 +56,8 @@
         </div><!-- .row -->
 
         <div class="row">
-          <div class="form-group col-6">
-            <label for="user-pts">Enter current points earned in class:</label>
+          <div class="form-group col-4">
+            <label for="user-pts">Enter current points:</label>
             <input type="text" class="form-control" id="user-pts">
           </div><!-- .form-group -->
 
@@ -75,23 +75,45 @@
     </div><!-- .row -->
   </div><!-- .container -->
 
-  <div>
-    <button id="goal-btn" type="button" value="Set Goal">Set Goal</button>
-    <button id="track-btn" type="button" value="Track Goal">Track Goal</button>
-    <button id="margin-btn" type="button" value="Goal Margin">Goal Margin</button>
+
+  <div class="container" id="output">
+    <h2>See How Your Class Is Progressing</h2>
+    
+
+        <div class="row">
+      <div class="col-md-4">
+        <div>
+          <button id="goal-btn" type="button" value="Set Goal">Goal</button>
+        </div>
+        <p id="out-Goal">
+          <!-- this is result of goal, scale, maxpts reports class goal pts. -->
+        </p>
+      </div>
+        
+      <div class="col-md-3">
+        <div>
+          <button id="track-btn" type="button" value="Track Goal">Track</button>
+        </div>  
+        <p id="out-Track">
+          <!-- this is result of user pts, wk# reports current status. -->
+        </p>
+      </div>
+
+      <div class="col-md-3">
+        <div>
+          <button id="margin-btn" type="button" value="Goal Margin">Margin</button>
+        </div> 
+        <p id="out-Margin">
+          <!-- this is result of goal, scale, maxpts, wk#,  reports class goal pts. -->
+        </p>
+      </div>
+    </div><!-- .row -->
+
   </div>
 
-  <p id="out-Goal">
-    <!-- this is result of goal, scale, maxpts reports class goal pts. -->
-</p>
-<p id="out-Track">
-  <!-- this is result of user pts, wk# reports current status. -->
-</p>
-<p id="out-Margin">
-    <!-- this is result of goal, scale, maxpts, wk#,  reports class goal pts. -->
-</p>
   <script src="courseMap.js"></script>
   <script src="scripts.js"></script>
-</body>
-    <!-- this is result of goal, scale, maxpts, wk#,  reports class goal pts. -->
+  <!-- Used bootstrap styling for output. Will adjust padding and colors in CSS-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body>    
 </html>
