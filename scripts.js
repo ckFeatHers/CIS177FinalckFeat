@@ -1,3 +1,52 @@
+/** *************** PART 'DONE'  SET DATA POINTS  **********************
+ * These need to be global
+ */
+
+let userPts = 1;
+let goal;
+let classId;
+let week;
+// for class obj
+let myClass;
+
+/** Sets the 'myClass' to use for output */
+function clickHandlerDone() {
+  userPts = parseInt(document.querySelector("#user-pts").value);
+  if (userPts > 0) {
+    goal = parseInt(document.querySelector("#goal").value);
+    classId = document.querySelector("#course").value;
+    week = parseInt(document.querySelector("#week-num").value);
+    console.log("line 17 inside clickHandlerDone " + userPts);
+
+    let myClassNew = {
+      className: courseMap.get(classId).className,
+      scale: courseMap.get(classId).scale,
+      maxPts: getTotalPts(classId, 17),
+      weekPts: getTotalPts(classId, week),
+      goalPts: getGoalPts(classId, goal)
+    };
+
+    myClass = myClassNew;
+    console.log(myClass);
+  } else {
+    alert("WARNING: enter current points for this class before continuing.");
+  }
+  /** here I would like to use #output in some way
+  to cause the form to show. I assume using
+  the template tag and replacing would work best.
+  document.querySelector("#output")
+  could also simulate the buttons are inactive with color change
+  UNTIL THEN GIVE WARNING THAT DATA NEEDS ENTERING.
+   */
+
+  // CLEAR THE OUTPUT FIELDS WHEN NEW CLASS IS GENERATED
+  document.querySelector("#out-Goal").textContent = "";
+  document.querySelector("#out-Track").textContent = "";
+  document.querySelector("#out-Margin").textContent = "";
+}
+const doneBtn = document.querySelector("#done-btn");
+doneBtn.addEventListener("click", clickHandlerDone);
+
 /** **********************   PART I  ******************************/
 // use methods to create remaining two values for obj course myClass
 
@@ -31,23 +80,6 @@ function getGoalPts(id, X) {
   return pts;
 }
 
-/** **********************   SET DATA POINTS  **********************
- * Retrieve data from user. Convert to numbers where applicable.
- * */
-let goal = parseInt(document.querySelector("#goal").value);
-let userPts = parseInt(document.querySelector("#user-pts").value);
-let classId = document.querySelector("#course").value;
-let week = parseInt(document.querySelector("#week-num").value);
-
-/** For Chosen Course create OBJECT  ** **/
-
-let myClass = {
-  className: courseMap.get(classId).className,
-  scale: courseMap.get(classId).scale,
-  maxPts: getTotalPts(classId, 17),
-  weekPts: getTotalPts(classId, week),
-  goalPts: getGoalPts(classId, goal)
-};
 /** **********************   PART II  ******************************/
 // Methods get percent and get Goal points. output click handler: see dom.js
 
@@ -75,14 +107,8 @@ function getDif(pig, goat) {
 
   return weight;
 }
-// DOM SCRIPTS **************************************************************
 
-/** buttons*/
-// const classGoalBtn = document.querySelector("#goal-btn");
-// const trackBtn = document.querySelector("#track-btn");
-// const marginBtn = document.querySelector("#margin-btn");
-
-/** ******************************************************************************** */
+/** ****************************************************************** */
 /** PART I Click Handler
  * userPts and class's goalPts needed.
  * @return {void} void; out put of class name and goalPts calculcated from getGoalPts()
@@ -99,11 +125,10 @@ function clickHandlerSet() {
   }
   document.querySelector("#out-Goal").textContent = any;
 }
-
 const classGoalBtn = document.querySelector("#goal-btn");
 classGoalBtn.addEventListener("click", clickHandlerSet);
 
-/** ******************************************************************** */
+/** ****************************************************************** */
 
 /** Part II Click Handler
  * To track; need userPts, weekPts(the total to date)
@@ -120,10 +145,10 @@ function clickHandlerTrack() {
 
   document.querySelector("#out-Track").textContent = track;
 }
-
 const trackBtn = document.querySelector("#track-btn");
 trackBtn.addEventListener("click", clickHandlerTrack);
-/** ******************************************************************** */
+/** ****************************************************************** */
+
 /** Part III click Handler
  * -Margin: How many pts you need for goal and how many pts reamin
  * -% for remaining in class
@@ -145,9 +170,7 @@ function clickHandler() {
   } else {
     marginMsg = `Not sure of your status. Please check blackboard.`;
   }
-
   document.querySelector("#out-Margin").textContent = marginMsg;
 }
-
 const marginBtn = document.querySelector("#margin-btn");
 marginBtn.addEventListener("click", clickHandler);

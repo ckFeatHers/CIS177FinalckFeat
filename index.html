@@ -57,9 +57,8 @@
         <div class="row">
           <div class="form-group col-4">
             <label for="user-pts">Enter current points:</label>
-            <input type="text" class="form-control" id="user-pts">
+            <input type="text" class="form-control" id="user-pts" value="1">
           </div><!-- .form-group -->
-
           <div class="form-group col-6">
               <label for="goal">What is your Letter Grade Goal?</label>
               <select class="form-control" id="goal">
@@ -72,7 +71,11 @@
         </div><!-- .row -->
       </form>
     </div><!-- .row -->
+    <div>
+      <button id="done-btn" type="button" value="Done">Done</button>
+    </div>
   </div><!-- .container -->
+
 
 <form id="output">
   <div class="container" >
@@ -109,7 +112,9 @@
     </div>
   </form>
   
+  <templete>
 
+  </templete>
   <script src="courseMap.js"></script>
   <script src="scripts.js"></script>
   <!-- Used bootstrap styling for output. Will adjust padding and colors in CSS-->
