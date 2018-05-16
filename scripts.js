@@ -1,12 +1,3 @@
-/** **********************   SET DATA POINTS  **********************
- * Retrieve data from user. Convert to numbers where applicable.
- * */
-
-let goal = parseInt(document.querySelector("#goal").value);
-let userPts = parseInt(document.querySelector("#user-pts").value);
-let classId = document.querySelector("#course").value;
-let week = parseInt(document.querySelector("#week-num").value);
-
 /** **********************   PART I  ******************************/
 // use methods to create remaining two values for obj course myClass
 
@@ -40,7 +31,15 @@ function getGoalPts(id, X) {
   return pts;
 }
 
-/** ** For Chosen Course create OBJECT  ** **/
+/** **********************   SET DATA POINTS  **********************
+ * Retrieve data from user. Convert to numbers where applicable.
+ * */
+let goal = parseInt(document.querySelector("#goal").value);
+let userPts = parseInt(document.querySelector("#user-pts").value);
+let classId = document.querySelector("#course").value;
+let week = parseInt(document.querySelector("#week-num").value);
+
+/** For Chosen Course create OBJECT  ** **/
 
 let myClass = {
   className: courseMap.get(classId).className,
@@ -52,8 +51,7 @@ let myClass = {
 /** **********************   PART II  ******************************/
 // Methods get percent and get Goal points. output click handler: see dom.js
 
-/**
- * Get the Percentage
+/** Get the Percentage
  * @param {Number} a user current points ; pts need
  * @param {Number} B class current max pts; pts remaining
  * @return {Number} percent avg for output
@@ -67,8 +65,7 @@ function getPercent(a, B) {
 /** **********************   PART III  ******************************/
 // Method needed: Percentage from partII, Difference. Click Handler.
 
-/**
- *  Get the Difference
+/** Get the Difference
  * @param {Number} pig GoalPts; maxPts; RemainClass
  * @param {Number} goat user-pts; wkMax; RemainNeed
  * @return {Number} Difference of two numbers
@@ -108,14 +105,13 @@ classGoalBtn.addEventListener("click", clickHandlerSet);
 
 /** ******************************************************************** */
 
-/**
- * Part II Click Handler
+/** Part II Click Handler
  * To track; need userPts, weekPts(the total to date)
  * @return {void} inserts results to DOM
  */
 function clickHandlerTrack() {
   let track;
-  if (myClass.weekPts != 0) {
+  if (userPts > 0) {
     const percent = getPercent(userPts, myClass.weekPts);
     track = `Currently you have a ${percent}% in the class.`;
   } else {
@@ -128,27 +124,28 @@ function clickHandlerTrack() {
 const trackBtn = document.querySelector("#track-btn");
 trackBtn.addEventListener("click", clickHandlerTrack);
 /** ******************************************************************** */
-/**
- * Part III click Handler
+/** Part III click Handler
  * -Margin: How many pts you need for goal and how many pts reamin
  * -% for remaining in class
  * @return {void} out put to browser
  */
 function clickHandler() {
-  const margin = getDif(
-    getDif(myClass.maxPts, myClass.weekPts),
-    getDif(myClass.goalPts, userPts)
-  );
+  const need = getDif(myClass.goalPts, userPts);
+  const remain = getDif(myClass.maxPts, myClass.weekPts);
+  const margin = getDif(remain, need);
 
   let marginMsg;
   if (margin > 0) {
-    marginMsg = `You have a margin of ${margin} points.  You can miss that many and still get your goal!`;
+    marginMsg = `You are there! You can miss ${margin} points and still get your goal!`;
   } else if (margin == 0) {
     marginMsg = `You have NO room for error for this goal.  You may want to reconsider.`;
-  } else {
+  } else if (margin < 0) {
     marginMsg = `You have missed your goal by ${margin *
       -1}. A new goal is needed!`;
+  } else {
+    marginMsg = `Not sure of your status. Please check blackboard.`;
   }
+
   document.querySelector("#out-Margin").textContent = marginMsg;
 }
 
