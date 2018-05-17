@@ -23,7 +23,7 @@
         <div class="row">
           <div class="form-group col-4">
             <label for="course">Select Course</label>
-            <select class="form-control" id="course">
+            <select class="form-control" id="course" onfocus ="clearOutput()">
               <option value="LA252">C#</option>
               <option value="LA195">Intro to DataBase</option>
               <option value="HT187">Java</option>
@@ -72,15 +72,14 @@
       </form>
     </div><!-- .row -->
     <div>
-      <button id="done-btn" type="button" value="Done">Done</button>
+      <button id="done-btn" type="button" value="Done">DONE</button>
     </div>
   </div><!-- .container -->
 
 
 <form id="output">
   <div class="container" >
-    <h2>See How Your Class Is Progressing</h2>    
-
+    <h2>See How Your Class Is Progressing</h2>
         <div class="row">
       <div class="col-md-4">
         <div>
@@ -112,9 +111,6 @@
     </div>
   </form>
   
-  <templete>
-
-  </templete>
   <script src="courseMap.js"></script>
   <script src="scripts.js"></script>
   <!-- Used bootstrap styling for output. Will adjust padding and colors in CSS-->
